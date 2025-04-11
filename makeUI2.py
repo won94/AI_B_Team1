@@ -1,4 +1,6 @@
 
+from model_utils import load_sentiment_model
+
 # 모델 로드
 classifier = load_sentiment_model()
 
