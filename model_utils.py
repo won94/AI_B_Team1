@@ -1,7 +1,9 @@
 
-from model_utils import load_sentiment_model
+from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
-classifier = load_sentiment_model()
-text = "기분이 정말 좋아요!"
-result = classifier(text)
-print(result)
+def load_sentiment_model():
+    model_name = "beomi/kcbert-base"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
+    classifier = pipeline("sentiment-analysis", model=model, tokenizer=tokenizer)
+    return classifier
